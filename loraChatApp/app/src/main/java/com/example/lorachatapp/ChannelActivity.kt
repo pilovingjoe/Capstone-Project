@@ -127,7 +127,7 @@ class ChannelActivity : AppCompatActivity() {
     fun receiveMessage() {
         // message in form of receiver;sender;dateTime;content
         val content=BLEDevice?.readMessage().toString()
-
+        
         val rawMessage = content.split(";")
         if (rawMessage.size < 4) return
 
