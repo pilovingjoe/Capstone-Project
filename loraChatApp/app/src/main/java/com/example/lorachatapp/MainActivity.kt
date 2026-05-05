@@ -61,7 +61,7 @@ class MainActivity : ComponentActivity() {
                             mutableStateOf(haveAllPermissions(applicationContext))
                         }
                         TopAppBar(
-                            title = { Text("Lora Chat Channels") },
+                            title = { Text("Lora Chat") },
                             actions = {
                                 if (!(havePerms))
                                     GrantPermissionsButton {
@@ -246,3 +246,4 @@ fun haveAllPermissions(context: Context) =
         .all { context.checkSelfPermission(it) == PackageManager.PERMISSION_GRANTED }
 
 
+//
