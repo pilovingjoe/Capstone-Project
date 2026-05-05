@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://dce3y03fl4506"]
+
+[ext_resource type="Theme" uid="uid://bse16ypjw5veu" path="res://defaultTheme.tres" id="1_52xrd"]
+[ext_resource type="Script" uid="uid://ch5dd8noycgy3" path="res://connection_chat_gui.gd" id="1_bej1v"]
+
+[node name="ConnectionOne" type="MarginContainer" unique_id=380261758]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_52xrd")
+script = ExtResource("1_bej1v")
+metadata/_tab_index = 1
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1641852306]
+layout_mode = 2
+color = Color(0.099985994, 0.099985994, 0.09998598, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=1616469381]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AddressLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=516875327]
+layout_mode = 2
+text = "Address"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/VBoxContainer" unique_id=616134576]
+layout_mode = 2
+size_flags_vertical = 3
+text = "messages will show here:
+"
+scroll_following = true
+scroll_following_visible_characters = true
+
+[node name="Msg" type="VBoxContainer" parent="ColorRect/VBoxContainer" unique_id=1320878568]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/Msg" unique_id=452705630]
+layout_mode = 2
+theme_type_variation = &"StatusLabel"
+text = "msg"
+
+[node name="LineEdit" type="LineEdit" parent="ColorRect/VBoxContainer/Msg" unique_id=817163593]
+layout_mode = 2
+size_flags_vertical = 3
+text = "hello mesh"
+
+[node name="Recipient" type="VBoxContainer" parent="ColorRect/VBoxContainer" unique_id=345389198]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/Recipient" unique_id=2081264351]
+layout_mode = 2
+theme_type_variation = &"StatusLabel"
+text = "recipient"
+
+[node name="LineEdit" type="LineEdit" parent="ColorRect/VBoxContainer/Recipient" unique_id=1562639772]
+layout_mode = 2
+text = "0"
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer" unique_id=1276433220]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="DisconnectButton" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer" unique_id=703677526]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+text = "Disconnect"
+
+[node name="ClearButton" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer" unique_id=1896826722]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+text = "Clear
+"
+
+[node name="InfoButton" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer" unique_id=1330597477]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+text = "Info"
+
+[node name="SendButton" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer" unique_id=1759294008]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Send
+"
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/ClearButton" to="." method="_on_clear_button_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/InfoButton" to="." method="_on_info_button_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/SendButton" to="." method="_on_send_button_pressed"]
