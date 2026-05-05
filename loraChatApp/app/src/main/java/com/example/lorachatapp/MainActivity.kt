@@ -38,7 +38,6 @@ import com.example.lorachatapp.viewmodel.BLEClientUIState
 import com.example.lorachatapp.viewmodel.BLEClientViewModel
 import kotlin.collections.contains
 import androidx.compose.runtime.collectAsState
-import androidx.compose.material.icons.filled.Add
 import java.nio.DoubleBuffer
 
 @SuppressLint("MissingPermission")
@@ -49,14 +48,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LoraChatAppTheme {
-                var showNewChannelDialog by remember { mutableStateOf(false) }
-
-                val viewModel: BLEClientViewModel by viewModels()
-                val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-                val contacts by viewModel.contacts.collectAsState(initial = emptyList())
-
                 Scaffold(
                     topBar = {
+                        var isScanning by remember {
+                            mutableStateOf(false)
+                        }
                         var havePerms by remember {
                             mutableStateOf(haveAllPermissions(applicationContext))
                         }
@@ -70,29 +66,11 @@ class MainActivity : ComponentActivity() {
                             }
 
                         )
-                    },
-                    floatingActionButton = {
-                        if (uiState.isDeviceConnected) {
-                            FloatingActionButton(onClick = { showNewChannelDialog = true }) {
-                                Icon(Icons.Default.Add, contentDescription = "New Channel")
-                            }
-                        }
                     }
                 ) { innerPadding ->
 
-                    if (showNewChannelDialog) {
-                        NewChannelDialog(
-                            onDismiss = { showNewChannelDialog = false },
-                            onConfirm = { receiverId ->
-                                showNewChannelDialog = false
-                                val intent = Intent(this, ChannelActivity::class.java).apply {
-                                    putExtra("SENDER_NAME", receiverId)
-                                }
-                                startActivity(intent)
-                            }
-                        )
-                    }
-
+                    val viewModel: BLEClientViewModel by viewModels()
+                    val contacts by viewModel.contacts.collectAsState(initial = emptyList())
                     Surface(
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
@@ -114,36 +92,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
-
-@Composable
-fun NewChannelDialog(onDismiss: () -> Unit, onConfirm: (String) -> Unit) {
-    var receiverId by remember { mutableStateOf("") }
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text("New Channel") },
-        text = {
-            TextField(
-                value = receiverId,
-                onValueChange = { receiverId = it },
-                label = { Text("Receiver ID") },
-                singleLine = true
-            )
-        },
-        confirmButton = {
-            Button(
-                onClick = { if (receiverId.isNotBlank()) onConfirm(receiverId) },
-                enabled = receiverId.isNotBlank()
-            ) {
-                Text("Create")
-            }
-        },
-        dismissButton = {
-            TextButton(onClick = onDismiss) {
-                Text("Cancel")
-            }
-        }
-    )
 }
 
 @RequiresPermission(allOf = [Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.BLUETOOTH_CONNECT])

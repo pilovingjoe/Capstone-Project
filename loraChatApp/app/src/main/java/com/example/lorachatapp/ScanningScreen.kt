@@ -22,6 +22,8 @@ import androidx.compose.ui.unit.dp
 import com.tdcolvin.bleclient.ble.PERMISSION_BLUETOOTH_CONNECT
 import com.tdcolvin.bleclient.ble.PERMISSION_BLUETOOTH_SCAN
 
+// Much of this code is adapted from Rainder Bhandari's "Beginner's Guide to Building a BLE App with Android"
+// This counts as "derivative work" under the Apache License, which is included in this repository
 
 @Composable
 @RequiresPermission(allOf = [PERMISSION_BLUETOOTH_SCAN, PERMISSION_BLUETOOTH_CONNECT])

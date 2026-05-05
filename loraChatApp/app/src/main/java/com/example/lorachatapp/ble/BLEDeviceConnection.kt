@@ -16,9 +16,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import java.util.UUID
 
+// Much of this code is adapted from Rainder Bhandari's "Beginner's Guide to Building a BLE App with Android"
+// This counts as "derivative work" under the Apache License, which is included in this repository
 val UART_SERVICE_UUID: UUID = UUID.fromString("6E400001-B5A3-F393-E0A9-E50E24DCCA9E")
 val WRITE_CHARACTERISTIC_UUID: UUID = UUID.fromString("6E400002-B5A3-F393-E0A9-E50E24DCCA9E")
-val READ_CHARACTERISTIC_UUID: UUID = UUID.fromString("8c380002-10bd-4fdb-ba21-1922d6cf860d")
+val READ_CHARACTERISTIC_UUID: UUID = UUID.fromString("6E400003-B5A3-F393-E0A9-E50E24DCCA9E")
 
 @Suppress("DEPRECATION")
 class BLEDeviceConnection @RequiresPermission("PERMISSION_BLUETOOTH_CONNECT") constructor(
@@ -130,9 +132,11 @@ class BLEDeviceConnection @RequiresPermission("PERMISSION_BLUETOOTH_CONNECT") co
     @RequiresPermission(PERMISSION_BLUETOOTH_CONNECT)
     fun writeMessage(message: Message) {
         val service = gatt?.getService(UART_SERVICE_UUID)
-        val characteristic = service?.getCharacteristic(READ_CHARACTERISTIC_UUID)
+        val characteristic = service?.getCharacteristic(WRITE_CHARACTERISTIC_UUID)
+
         if (characteristic != null) {
-            characteristic.value = message.content.toByteArray()
+            val msg = "T"+message.receiver+message.content
+            characteristic.value = msg.toByteArray()
             val success = gatt?.writeCharacteristic(characteristic)
             Log.v("bluetooth", "Write status: $success")
         }
