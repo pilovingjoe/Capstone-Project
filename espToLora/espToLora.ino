@@ -539,17 +539,17 @@ void loop()
     if (deviceConnected && !wasDeviceConnected)
     {
         //Dump Messages
-        // Our flash devices are not rated for 5 volts, so we will not be demoing it, this method should work when the chip is supplied with 3.3 V
-        // int tempAddr = 0;
-        // String msg;
-        // do{
-        //     msg = flash.readStr(tempAddr, msg);
-        //     bleTxCharacteristic->setValue((uint8_t *)msg.c_str(), msg.length());
-        //     bleTxCharacteristic->notify();
-        //     flash.eraseSector(tempAddr);
-        //     tempAddr +=sizeof(msg);
+        // Our flash devices are not rated for 5 volts, so we will not be demoing it, but this method should work when the chip is supplied with 3.3 V
+        int tempAddr = 0;
+        String msg;
+        do{
+            msg = flash.readStr(tempAddr, msg);
+            bleTxCharacteristic->setValue((uint8_t *)msg.c_str(), msg.length());
+            bleTxCharacteristic->notify();
+            flash.eraseSector(tempAddr);
+            tempAddr +=sizeof(msg);
 
-        // }while(msg);
+        }while(msg)!= "";
         
 
         wasDeviceConnected = true;
