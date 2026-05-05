@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://bsejyk6kmnvii"]
+
+[ext_resource type="Script" uid="uid://b6xlo2y5y2xc4" path="res://gui/auto_styling_for_all_resolutions.gd" id="1_7mycd"]
+[ext_resource type="Script" uid="uid://ds36idau60r15" path="res://gui/lists_scanned_bluetooth_devices.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://ccon0it5hpst8" path="res://mainScreen/button1.gd" id="3_h2yge"]
+[ext_resource type="Theme" uid="uid://bse16ypjw5veu" path="res://defaultTheme.tres" id="4_272bh"]
+[ext_resource type="Script" uid="uid://b0ygrg2yuy726" path="res://mainScreen/button3.gd" id="5_272bh"]
+[ext_resource type="Script" uid="uid://2pge3sgubibx" path="res://gui/touch_swipable_scroll_container.gd" id="7_kek77"]
+[ext_resource type="Script" uid="uid://c0d3ua02f7wyx" path="res://data_tab.gd" id="8_kek77"]
+
+[node name="root" type="CanvasLayer" unique_id=1811171423]
+script = ExtResource("1_7mycd")
+theme_to_be_modified = ExtResource("4_272bh")
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=947738869]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_272bh")
+current_tab = 0
+
+[node name="Connect" type="VBoxContainer" parent="TabContainer" unique_id=1434377289]
+layout_mode = 2
+size_flags_stretch_ratio = 5.04
+theme = ExtResource("4_272bh")
+metadata/_tab_index = 0
+
+[node name="Label" type="Label" parent="TabContainer/Connect" unique_id=405580345]
+layout_mode = 2
+theme = ExtResource("4_272bh")
+text = "BLE devices"
+horizontal_alignment = 1
+
+[node name="buttons" type="HFlowContainer" parent="TabContainer/Connect" unique_id=1321809509]
+layout_mode = 2
+theme = ExtResource("4_272bh")
+
+[node name="Button" type="Button" parent="TabContainer/Connect/buttons" unique_id=711321852]
+layout_mode = 2
+text = "Scan for Everything"
+script = ExtResource("3_h2yge")
+
+[node name="Button3" type="Button" parent="TabContainer/Connect/buttons" unique_id=987225575]
+layout_mode = 2
+text = "Scan for esp32c6"
+script = ExtResource("5_272bh")
+
+[node name="FilterNameless" type="CheckBox" parent="TabContainer/Connect/buttons" unique_id=514832886]
+layout_mode = 2
+theme = ExtResource("4_272bh")
+button_pressed = true
+text = "Filter unamed"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Connect" unique_id=1474840026]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("7_kek77")
+
+[node name="ItemList" type="VBoxContainer" parent="TabContainer/Connect/ScrollContainer" unique_id=1014949312]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_0xm2m")
+
+[node name="Data" type="VBoxContainer" parent="TabContainer" unique_id=1468761537]
+visible = false
+layout_mode = 2
+script = ExtResource("8_kek77")
+metadata/_tab_index = 1
+
+[connection signal="button_down" from="TabContainer/Connect/buttons/Button" to="TabContainer/Connect/buttons/Button" method="_on_button_down"]
+[connection signal="button_down" from="TabContainer/Connect/buttons/Button3" to="TabContainer/Connect/buttons/Button3" method="_on_button_down"]

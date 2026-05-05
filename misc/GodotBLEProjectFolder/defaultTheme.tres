@@ -1,0 +1,52 @@
+[gd_resource type="Theme" format=3 uid="uid://bse16ypjw5veu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8jwk6"]
+content_margin_left = 3.0
+content_margin_right = 3.0
+bg_color = Color(0.3337939, 0.12255945, 0.0027262701, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1r1ef"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hbm6q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6pnpd"]
+bg_color = Color(0, 0, 0, 1)
+
+[resource]
+default_font_size = 53
+Button/styles/normal = SubResource("StyleBoxFlat_8jwk6")
+HFlowContainer/constants/h_separation = 10
+HFlowContainer/constants/v_separation = 10
+ItemList/constants/icon_max_width = 106
+ItemList/constants/v_separation = 21
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/font_sizes/font_size = 106
+Label/styles/focus = SubResource("StyleBoxFlat_1r1ef")
+Label/styles/normal = SubResource("StyleBoxEmpty_hbm6q")
+LineEdit/colors/font_color = Color(1, 1, 1, 1)
+LineEdit/styles/normal = SubResource("StyleBoxFlat_6pnpd")
+StatusLabel/base_type = &"Label"
+StatusLabel/font_sizes/font_size = 53
+TabBar/font_sizes/font_size = 53
+TabContainer/font_sizes/font_size = 53

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://b0xmn5ortrb2v"]
+
+[ext_resource type="Theme" uid="uid://bse16ypjw5veu" path="res://defaultTheme.tres" id="1_mge6g"]
+[ext_resource type="Script" uid="uid://dvu22o0mnmqta" path="res://gui/device_item.gd" id="1_q8bfw"]
+
+[node name="DeviceItem" type="VBoxContainer" unique_id=936329235]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mge6g")
+script = ExtResource("1_q8bfw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1167722515]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=1676430529]
+layout_mode = 2
+theme = ExtResource("1_mge6g")
+theme_type_variation = &"StatusLabel"
+text = "device name 96 dbm"
+
+[node name="ExpandedPanel" type="VBoxContainer" parent="." unique_id=1259545644]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="ExpandedPanel" unique_id=226038827]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_mge6g")
+text = "connect"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ExpandedPanel" unique_id=1735132910]
+layout_mode = 2
+text = "test"
+fit_content = true
+
+[connection signal="gui_input" from="HBoxContainer" to="." method="_on_touch"]
+[connection signal="pressed" from="ExpandedPanel/Button" to="." method="_on_connect_button_pressed"]
